@@ -1,0 +1,43 @@
+﻿body {
+    overflow: hidden;
+    font-family: "Raleway",Tahoma;
+    background: #DAE2F8; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #D6A4A4, #DAE2F8); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #D6A4A4, #DAE2F8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.container {
+    width: 100%;
+}
+
+.in {
+    display: table;
+    margin: 0 auto;
+}
+
+#box {
+    width: 400px;
+    height:600px;
+    background-color:white;
+    box-shadow:#808080 0px 0px 10px 0px;
+    border-radius:6px
+}
+#heading{
+    text-align:center;
+    background-image:linear-gradient(to right,#448AFF,#18FFFF);
+    width:inherit;
+    height:auto;
+    border-top-left-radius:6px;
+    border-top-right-radius:6px;
+    box-shadow: 0 10px 16px -10px black;
+}
+#data{
+    width:inherit;
+}
+.textbox{
+    margin-left:20px;
+    width:200px;
+   float: left;
+   margin-top:100px;
+   border: 0px 0px 0px 1px solid black;
+}
