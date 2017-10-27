@@ -12,7 +12,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         if (Session["user"] != null)
         {
             Label2.Visible = true;
-            Label4.Text = "<i>WELCOME "+Session["user"].ToString()+"</i>";
+            Label4.Text = "<i>WELCOME, "+Session["user"].ToString()+"</i>";
         }
         else
         {

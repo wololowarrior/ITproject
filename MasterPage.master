@@ -15,7 +15,7 @@
 
 <body style="background:none">
     <nav class="navbar-fixed cyan">
-        <div class="nav-wrapper z-depth-2">
+        <div class="nav-wrapper z-depth-1">
             <a href="#" class="brand-logo left">
                 <asp:Label ID="Label4" runat="server" Text=""></asp:Label></a>
             <a href="#" class="brand-logo center" id="some">
@@ -27,7 +27,7 @@
             </ul>
         </div>
     </nav>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" class="col s12 accent-2 z-depth-1">
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
