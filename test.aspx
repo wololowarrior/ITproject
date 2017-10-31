@@ -44,9 +44,11 @@
             <a href="MainPage.aspx">Continue without Login</a>
         </div>
         <div>
-            <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DynamicLayout="false" >
+            <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
                 <ProgressTemplate>
-                  <span style="margin-left:120px"> <img src="images/Ellipsis.gif" height="75" width="75" /></span>
+                    <div style="position: absolute; background-color: #FAFAFA; z-index: 2147483647 !important; opacity: 0.8; overflow: hidden; text-align: center; top: 0; left: 0; height: 100%; width: 100%; padding-top: 20%;">
+                        <img src="images/Ellipsis.gif" height="75" width="75" style="position: relative; top: 45%" />
+                    </div>
                 </ProgressTemplate>
             </asp:UpdateProgress>
         </div>
