@@ -22,7 +22,8 @@
             </div>
             <div>
                 <div class="group">
-                    <asp:TextBox ID="TextBox1" class="textbox" placeholder="Email" TextMode="Email" runat="server"></asp:TextBox><span class="highlight"></span><span class="bar"></span>
+                    <asp:TextBox ID="TextBox1" class="textbox" placeholder="Email"  runat="server"></asp:TextBox><span class="highlight"></span><span class="bar"></span>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox1" ValidationExpression="^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$" ErrorMessage="Not a valid Email"></asp:RegularExpressionValidator>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="Email Required"></asp:RequiredFieldValidator>
                 </div>
                 <div class="group">

@@ -17,8 +17,6 @@ public partial class _Default : System.Web.UI.Page
     List<string> cart;
     protected void Page_Load(object sender, EventArgs e)
     {
-        Label1.Text = "";
-
         if (Session["cart"] == null)
         {
             cart = new List<string>();
@@ -27,6 +25,7 @@ public partial class _Default : System.Web.UI.Page
         {
             cart = Session["cart"] as List<string>;
         }
+        
         //Label1.Text = "<h1>Welcome" + Request.QueryString["Name"]+"</h1>";
     }
 
@@ -129,6 +128,48 @@ public partial class _Default : System.Web.UI.Page
             DropDownList1.DataBind();
             //Response.Redirect("results.aspx?" + row.Cells[0].Text);
         }
+        if (e.CommandName == "notifyAdmin")
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = GridView1.Rows[index];
+            SqlConnection connn = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ToString());
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ToString());
+
+            SqlCommand cmd = new SqlCommand();
+            SqlCommand cmd1 = new SqlCommand();
+            cmd1.Connection = conn;
+            cmd.Connection = connn;
+            cmd.CommandText = "SELECT * FROM notify WHERE ISBN=@isbn";
+            cmd.Parameters.AddWithValue("@isbn", row.Cells[0].Text);
+            connn.Open();
+            SqlDataReader r=cmd.ExecuteReader();
+            conn.Open();
+            Label1.Text = "144";
+            if (!r.Read())
+            {
+
+                cmd1.CommandText="INSERT INTO notify VALUEs(@isbn,1)";
+                cmd1.Parameters.AddWithValue("@isbn", row.Cells[0].Text);
+                if (cmd1.ExecuteNonQuery() !=0)
+                {
+                    Label1.Text = "Manager has been notified.";
+                }
+                Label1.Focus();
+
+            }
+            else
+            {
+                int number = Convert.ToInt32(r["requested"].ToString())+1;
+                cmd1.CommandText = "UPDATE notify SET requested=@re WHERE ISBN=@isbn";
+                cmd1.Parameters.AddWithValue("@isbn", row.Cells[0].Text);
+                cmd1.Parameters.AddWithValue("@re", number.ToString());
+                if (cmd1.ExecuteNonQuery() !=0)
+                {
+                    Label1.Text = "Manager has been notified.";
+                }
+            }
+            connn.Close();
+        }
     }
 
 
@@ -172,8 +213,8 @@ public partial class _Default : System.Web.UI.Page
                 e.Row.BackColor = Color.IndianRed;
                 e.Row.ForeColor = Color.FloralWhite;
                 Button btn = e.Row.Cells[7].FindControl("AddButton") as Button;
-                btn.Text = "Notify";
-                btn.CommandName = "NotifyAdmin";
+                btn.Text = "Notify Manager";
+                btn.CommandName = "notifyAdmin";
             }
 
         }

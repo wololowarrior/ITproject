@@ -1,0 +1,36 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage2.master.cs" Inherits="MasterPage2" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="overflow-y: hidden">
+    <form id="form1" runat="server">
+
+        <div class="div_nav" style="display: inline-block; display: -moz-inline-box; width: auto; text-align: left; background-color: bisque; height: 1000px">
+            <div>
+                <a href="adminpage1.aspx" class="nav_link">Requested Books</a>
+            </div>
+            <div>
+                <a href="updateinventory.aspx" class="nav_link">Update Inventory</a>
+            </div>
+            <div>
+                <a href="stat.aspx" class="nav_link">Sales Stat</a>
+            </div>
+            <div>
+                <a href="logout.aspx" class="nav_link">Logout</a>
+            </div>
+
+        </div>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+
+
+    </form>
+</body>
+</html>

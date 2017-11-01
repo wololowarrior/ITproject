@@ -16,7 +16,7 @@ public partial class test : System.Web.UI.Page
         if (Session["user"] != null)
         {
             Response.Redirect("MainPage.aspx");
-        }  
+        }
     }
 
     protected void create_Click(object sender, EventArgs e)
@@ -26,48 +26,59 @@ public partial class test : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        cs = ConfigurationManager.ConnectionStrings["connectionString"].ToString();
-        using(SqlConnection conn=new SqlConnection(cs))
+        if (TextBox1.Text == "admin@bas.com")
         {
-            using(SqlCommand cmd=new SqlCommand())
+            if (TextBox2.Text == "admin")
             {
-                cmd.Connection = conn;
-                cmd.CommandText = "SELECT  Name,Password FROM Registrations WHERE Email=@email";
-                cmd.Parameters.AddWithValue("@email", TextBox1.Text);
-                try
+                Response.Redirect("adminpage1.aspx");
+            }
+        }
+        else
+        {
+            cs = ConfigurationManager.ConnectionStrings["connectionString"].ToString();
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand())
                 {
-                    conn.Open();
-                    SqlDataReader reader;
-                    System.Threading.Thread.Sleep(1000);
-
-                    reader = cmd.ExecuteReader();
-                    if (reader.HasRows)
+                    cmd.Connection = conn;
+                    cmd.CommandText = "SELECT  Name,Password FROM Registrations WHERE Email=@email";
+                    cmd.Parameters.AddWithValue("@email", TextBox1.Text);
+                    try
                     {
-                        reader.Read();
-                        string password = reader["Password"].ToString();
-                        if (password == TextBox2.Text)
+                        conn.Open();
+                        SqlDataReader reader;
+                        System.Threading.Thread.Sleep(1000);
+
+                        reader = cmd.ExecuteReader();
+                        if (reader.HasRows)
                         {
-                            Session["user"] = reader["Name"];
-                            Session["email"] = TextBox1.Text;
-                            Response.Redirect("MainPage.aspx");
+                            reader.Read();
+                            string password = reader["Password"].ToString();
+                            if (password == TextBox2.Text)
+                            {
+                                Session["user"] = reader["Name"];
+                                Session["email"] = TextBox1.Text;
+                                Response.Redirect("MainPage.aspx");
+                            }
+                            else
+                            {
+                                Label2.Text = "<font color='red'>Check Password</font>";
+                                RequiredFieldValidator1.ErrorMessage = "Check Password";
+                            }
                         }
                         else
                         {
-                            Label2.Text = "<font color='red'>Check Password</font>";
+                            Label1.Text = "<font color='red'>Check E-Mail</font>";
                         }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        Label1.Text = "<font color='red'>Check E-Mail</font>";
+                        File.WriteAllText(Request.PhysicalApplicationPath + "\\log.txt", ex.Message);
                     }
-                }
-                catch(Exception ex)
-                {
-                    File.WriteAllText(Request.PhysicalApplicationPath + "\\log.txt", ex.Message);
-                }
-                finally
-                {
-                    conn.Close();
+                    finally
+                    {
+                        conn.Close();
+                    }
                 }
             }
         }

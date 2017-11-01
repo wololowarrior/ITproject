@@ -95,13 +95,20 @@ public partial class _Default : System.Web.UI.Page
             SqlConnection connn = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ToString());
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connn;
+            SqlCommand cmd1 = new SqlCommand();
+            cmd1.Connection = connn;
+            cmd1.CommandText = "INSERT INTO sales VALUES(@isbn,@date)";
+            cmd1.Parameters.AddWithValue("@isbn", objlt[i]);
+            cmd1.Parameters.AddWithValue("@date", DateTime.Today.Date);
             cmd.CommandText = "UPDATE book_details SET availablecopies=@c WHERE ISBN=@isbn";
             cmd.Parameters.AddWithValue("@c", count[i]);
             cmd.Parameters.AddWithValue("@isbn", objlt[i]);
             connn.Open();
             int res=cmd.ExecuteNonQuery();
-        }
+            cmd1.ExecuteNonQuery();
+        } 
         Label1.Text = "<br>Thankyou for shopping with us. You may collect Your items from the counter.";
+        Button1.Enabled = false;
         objlt.Clear();
         Session["cart"] = null;
     }

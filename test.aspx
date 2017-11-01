@@ -26,8 +26,9 @@
                 <ContentTemplate>
                     <div>
                         <div class="group">
-                            <asp:TextBox ID="TextBox1" CssClass="textbox" Placeholder="Email" TextMode="Email" runat="server"></asp:TextBox><span class="highlight"></span><span class="bar"></span>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="Email Required"></asp:RequiredFieldValidator>
+                            <asp:TextBox ID="TextBox1" CssClass="textbox" Placeholder="Email" runat="server"></asp:TextBox><span class="highlight"></span><span class="bar"></span>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="Email Required" Display="Dynamic"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox1" ValidationExpression="^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$" ErrorMessage="Please Enter a valid Email" Display="Dynamic"></asp:RegularExpressionValidator>
                             <asp:Label ID="Label1" runat="server" Text="" Font-Size="X-Small"></asp:Label>
                         </div>
                         <div class="group">

@@ -39,7 +39,7 @@ public partial class _Default : System.Web.UI.Page
                     int ret=cmd.ExecuteNonQuery();
                     if (ret != 0)
                     {
-                        Label1.Text = "Your request has been recorded.";
+                        Label2.Text = "Your request has been recorded.";
                     }
                 }
                 catch(Exception ex)

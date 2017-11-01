@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <h5>We apologise for the inconvinence. Please be so kind and the fill the book details below and get notified when in stock.</h5>
+    <h5>
+        <asp:Label ID="Label2" runat="server" Text="We apologise for the inconvinence. Please be so kind and the fill the book details below and get notified when in stock."></asp:Label></h5>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder2" ID="Content3" runat="server" Visible="false">
     <div class="row">
